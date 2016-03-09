@@ -1099,7 +1099,15 @@ function tpl_pagetitle($id = null, $ret = false) {
             break;
 
         default : // SHOW and anything else not included
-            $page_title = $name;
+            $ns = getNS($id);
+            if($ns){
+                    $name2 = ' ('.$ns.') ';
+                }else{
+                    $name2 = '';
+                }
+            $name2 = str_replace("-", " ", $name2);
+            $name2 = str_replace(":", " : ", $name2);
+            $page_title = $name.$name2;
     }
 
     if($ret) {
