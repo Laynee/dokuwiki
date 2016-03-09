@@ -398,6 +398,15 @@ function html_search(){
                 }
             }
             print html_wikilink(':'.$id,$name);
+            $ns = getNS($id);
+            if($ns){
+                $name2 = ' ('.$ns.') ';
+            }else{
+                $name2 = '';
+            }
+            $name2 = str_replace("-", " ", $name2);
+            $name2 = str_replace(":", " : ", $name2);
+            echo $name2;
             print '</li> ';
         }
         print '</ul> ';
