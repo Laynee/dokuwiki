@@ -424,6 +424,15 @@ function html_search(){
         foreach($data as $id => $cnt){
             print '<dt>';
             print html_wikilink(':'.$id,useHeading('navigation')?null:$id,$regex);
+            $ns = getNS($id);
+            if($ns){
+                $name2 = ' ('.$ns.') ';
+            }else{
+                $name2 = '';
+            }
+            $name2 = str_replace("-", " ", $name2);
+            $name2 = str_replace(":", " : ", $name2);
+            echo $name2;
             if($cnt !== 0){
                 print ': '.$cnt.' '.$lang['hits'].'';
             }
