@@ -1994,7 +1994,13 @@ function tpl_classes() {
     global $ACT, $conf, $ID, $INFO;
     /** @var Input $INPUT */
     global $INPUT;
-
+    function namespace_to_class($class, $ns) {
+        return $class . " ns_".$ns;
+    }
+    $nspath = explode(':', $ID);
+    $page = array_pop($nspath);
+    $class = array_reduce($nspath, 'namespace_to_class',
+                          "page_".$page);
     $classes = array(
         'dokuwiki',
         'mode_'.$ACT,
@@ -2002,6 +2008,8 @@ function tpl_classes() {
         $INPUT->server->bool('REMOTE_USER') ? 'loggedIn' : '',
         $INFO['exists'] ? '' : 'notFound',
         ($ID == $conf['start']) ? 'home' : '',
+        'id_'.str_replace(":","-","$ID" ),
+        $class,
     );
     return join(' ', $classes);
 }
