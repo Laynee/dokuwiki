@@ -133,7 +133,7 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
                     // open the footnote and set the anchor and backlink
                     $this->doc .= '<div class="fn">';
                     $this->doc .= '<sup><a href="#fnt__'.$id.'" id="fn__'.$id.'" class="fn_bot">';
-                    $this->doc .= $id.')</a></sup> '.DOKU_LF;
+                    $this->doc .= $id.'<span>)</span></a></sup> '.DOKU_LF;
 
                     // get any other footnotes that use the same markup
                     $alt = array_keys($this->footnotes, "@@FNT$id");
@@ -142,7 +142,7 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
                         foreach($alt as $ref) {
                             // set anchor and backlink for the other footnotes
                             $this->doc .= ', <sup><a href="#fnt__'.($ref).'" id="fn__'.($ref).'" class="fn_bot">';
-                            $this->doc .= ($ref).')</a></sup> '.DOKU_LF;
+                            $this->doc .= ($ref).'<span>)</span></a></sup> '.DOKU_LF;
                         }
                     }
 
@@ -422,7 +422,7 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
         }
 
         // output the footnote reference and link
-        $this->doc .= '<sup><a href="#fn__'.$fnid.'" id="fnt__'.$fnid.'" class="fn_top">'.$fnid.')</a></sup>';
+        $this->doc .= '<sup><a href="#fn__'.$fnid.'" id="fnt__'.$fnid.'" class="fn_top">'.$fnid.'<span>)</span></a></sup>';
     }
 
     /**
