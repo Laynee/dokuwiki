@@ -66,6 +66,13 @@ $showSidebar = $hasSidebar && ($ACT=='show');
                     <?php tpl_includeFile('pagefooter.html') ?>
                 </div>
 
+                <div id="feedback_container">
+                  <?php
+                  $feedback = plugin_load('action', 'feedback');
+                  if($feedback) $feedback->tpl();
+                  ?>
+                </div>
+
                 <div class="docInfo"><?php tpl_pageinfo() ?></div>
 
                 <?php tpl_flush() ?>
