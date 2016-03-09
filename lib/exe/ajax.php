@@ -70,7 +70,14 @@ function ajax_qsearch(){
                 $name = $id;
             }
         }
-        echo '<li>' . html_wikilink(':'.$id,$name) . '</li>';
+        echo '<li>' . html_wikilink(':'.$id,$name);
+        $ns = getNS($id);
+        if($ns){
+                $name2 = '<br> &#8627; '.$ns.'';
+            }else{
+                $name2 = '';
+            }
+        echo $name2 . '</li>';
 
         $counter ++;
         if($counter > $maxnumbersuggestions) {
